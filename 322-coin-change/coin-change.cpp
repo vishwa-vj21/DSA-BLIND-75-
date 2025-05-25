@@ -11,11 +11,6 @@ public:
                 }
             }
         }
-        if(dp[amount]!=amount+1){
-            return dp[amount];
-        }
-        else{
-            return -1;
-        }
+        return dp[amount] != amount + 1 ? dp[amount] : -1;
     }
 };
