@@ -12,8 +12,4 @@ class Solution(object):
                 dp[i]+=dp[i+2]
                 
         return dp[0]
-        """
-        :type s: str
-        :rtype: int
-        """
-        
+       
