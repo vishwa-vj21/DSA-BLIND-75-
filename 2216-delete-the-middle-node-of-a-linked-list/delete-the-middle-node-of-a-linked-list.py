@@ -8,17 +8,11 @@ class Solution(object):
         if head is None or head.next is None:
             return None
 
-        count=0
-        curr=head
-        while curr:
-            count+=1
-            curr=curr.next
-        n=count//2
-        curr=head
-        for i in range(n - 1):
-            curr = curr.next
-
-        # Delete middle node
-        curr.next = curr.next.next
-
+        slow,fast= head, head
+        prev=None
+        while fast and fast.next:
+            prev=slow
+            slow=slow.next
+            fast=fast.next.next
+        prev.next=slow.next
         return head
