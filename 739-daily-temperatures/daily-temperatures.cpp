@@ -6,9 +6,9 @@ public:
         stack<int> st;
         for(int i=0; i<n; i++){
             while(!st.empty() && temperatures[st.top()]<temperatures[i]){
-                int index=st.top();
+                //using top index directly instead of storing it inside index variable
+                output[st.top()]=i-st.top();
                 st.pop();
-                output[index]=i-index;
             }
             st.push(i);
         }
