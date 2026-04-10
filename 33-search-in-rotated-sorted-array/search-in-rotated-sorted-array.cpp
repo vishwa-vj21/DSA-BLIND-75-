@@ -1,29 +1,26 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int left=0;
-        int right=nums.size()-1;
-        while(left<=right){
-            int mid=(left+right)/2;
-            if(nums[mid]==target){
-                return mid;
-            }
-            //left side is sorted
-            else if(nums[left]<=nums[mid]){ 
-                if(nums[left]<=target && target<nums[mid]){
-                    right=mid-1;
+        int low=0;
+        int high=nums.size()-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target) return mid;
+            else if(nums[low]<=nums[mid]){
+                //c++ doesn't allow chained comparison so using &&
+                if(nums[low]<=target && target<nums[mid]) {
+                    high=mid-1;
                 }
                 else{
-                    left=mid+1;
+                    low=mid+1;
                 }
             }
-            //right side is sorted
             else{
-                if(nums[mid]<target && target<=nums[right]){
-                    left=mid+1; 
+                if(nums[mid]<target && target<=nums[high]){
+                    low=mid+1;
                 }
                 else{
-                    right=mid-1;
+                    high=mid-1;
                 }
             }
         }
