@@ -3,12 +3,12 @@ public:
     int shipWithinDays(vector<int>& weights, int days) {
         int low=*max_element(weights.begin(), weights.end());
         int high=accumulate(weights.begin(), weights.end(), 0);
-        int min_res=INT_MAX;
+        int min_res=high;
         while(low<=high){
             int mid=(low+high)/2;
             int res=capacity_checker(weights, mid);
             if(res<=days){
-                min_res=mid;  //store capacity
+                min_res=min(min_res, mid);  //store capacity
                 high=mid-1;  //check if lesser capacity can be achieved
             }
             else{
