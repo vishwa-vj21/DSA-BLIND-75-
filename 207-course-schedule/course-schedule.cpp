@@ -15,10 +15,9 @@ public:
                 q.push(i);
             }
         }
-        vector<int> res;
+        int count=0;
         while(!q.empty()){
             int top=q.front();
-            res.push_back(top);
             q.pop();
             for(int ad: adj[top]){
                 indegree[ad]--;
@@ -26,9 +25,9 @@ public:
                     q.push(ad);
                 }
             }
+            count++;
             
         }
-    if(res.size()!=numCourses) return false;
-    return true;
+    return count==numCourses;
     }
 };
