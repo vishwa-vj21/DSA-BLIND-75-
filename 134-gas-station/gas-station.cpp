@@ -7,7 +7,6 @@ public:
         int tot_cost=0;
         for(int i=0; i<gas.size(); i++){
             currgas+=gas[i]-cost[i];
-            
             if(currgas<0){
                 start=i+1;
                 currgas=0;
