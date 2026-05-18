@@ -13,9 +13,9 @@ public:
                 l++;
             }
             else{
+                if(score==0) return maxsc;
                 power+=tokens[r];
-                if(score==0) return score;
-                else score--;
+                score--;
                 r--;
             }
             maxsc=max(score, maxsc);
