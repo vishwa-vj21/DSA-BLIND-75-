@@ -24,7 +24,7 @@ public:
             prev=slow;
             slow=temp;
         }
-        while(prev!=nullptr && head!=nullptr){
+        while(prev!=nullptr){
             if(prev->val!=head->val) return false;
             prev=prev->next;
             head=head->next;
