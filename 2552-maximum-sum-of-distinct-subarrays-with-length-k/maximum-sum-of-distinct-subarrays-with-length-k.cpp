@@ -14,7 +14,7 @@ public:
             }
             maxi+=nums[end];
             hs.insert(nums[end]);
-            if(end-start+1==k){
+            if(hs.size()==k){
                 maxsum=max(maxi,maxsum);
             }
         }
