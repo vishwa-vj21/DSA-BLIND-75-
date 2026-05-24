@@ -1,22 +1,23 @@
 class Solution {
 public:
     long long maximumSubarraySum(vector<int>& nums, int k) {
-        int l=0;
-        unordered_map<int, int> hm;
-        long long curr_sum = 0, max_sum = 0;
-        for(int r=0; r<nums.size(); r++){
-            if((r-l+1)>k){
-                hm[nums[l]]--;
-                curr_sum-=nums[l];
-                if(hm[nums[l]]==0) hm.erase(nums[l]);
-                l+=1;
+        int start=0;
+        long long maxi=0;
+        long long maxsum=0;
+        unordered_set<int> hs;
+        
+        for(int end=0; end<nums.size(); end++){
+            while(hs.count(nums[end]) || end-start+1>k){
+                maxi-=nums[start];
+                hs.erase(nums[start]);
+                start++;    
             }
-            curr_sum+=nums[r];
-            hm[nums[r]]++;
-            if((r-l+1)==k && hm.size()==k){
-                max_sum=max(curr_sum, max_sum);
+            maxi+=nums[end];
+            hs.insert(nums[end]);
+            if(end-start+1==k){
+                maxsum=max(maxi,maxsum);
             }
         }
-        return max_sum;
+        return maxsum;
     }
 };
