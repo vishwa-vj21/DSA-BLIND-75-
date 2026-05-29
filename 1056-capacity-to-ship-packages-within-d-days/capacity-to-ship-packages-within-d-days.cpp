@@ -1,33 +1,31 @@
 class Solution {
 public:
     int shipWithinDays(vector<int>& weights, int days) {
-        int low=*max_element(weights.begin(), weights.end());
-        int high=accumulate(weights.begin(), weights.end(), 0);
-        int min_res=high;
-        while(low<=high){
-            int mid=(low+high)/2;
-            int res=capacity_checker(weights, mid);
-            if(res<=days){
-                min_res=min(min_res, mid);  //store capacity
-                high=mid-1;  //check if lesser capacity can be achieved
+        int l=*max_element(weights.begin(), weights.end()); //returns iterator
+        int r=accumulate(weights.begin(), weights.end(), 0); //needs initial value
+        int res=r;
+        while(l<=r){
+            int mid=(r+l)/2;
+            if(min_capacity(weights, mid, days)){
+                res=min(res, mid);
+                r=mid-1;
             }
             else{
-                low=mid+1;
+                l=mid+1;
             }
         }
-        return min_res;
+        return res;
     }
-    int capacity_checker(vector<int> &weights, int capacity){
-        int bucket=0;
-        int days=1;
-        for(int w: weights){
-            bucket+=w;
-            if(bucket>capacity){
-                days++;
-                bucket=w;
+    bool min_capacity(vector<int> &weights, int n, int days){
+            int bucket=0;
+            int count=1;
+            for(int i=0; i<weights.size(); i++){
+                bucket+=weights[i];
+                if(bucket>n){
+                    count++;
+                    bucket=weights[i];
+                }
             }
-            
+            return count<=days;
         }
-        return days;
-    }
 };
