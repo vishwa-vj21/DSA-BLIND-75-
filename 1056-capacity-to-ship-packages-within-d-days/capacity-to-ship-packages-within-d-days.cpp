@@ -20,10 +20,12 @@ public:
             int bucket=0;
             int count=1;
             for(int i=0; i<weights.size(); i++){
-                bucket+=weights[i];
-                if(bucket>n){
+                if(bucket+weights[i]>n){
                     count++;
                     bucket=weights[i];
+                }
+                else{
+                    bucket+=weights[i];
                 }
             }
             return count<=days;
