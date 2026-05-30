@@ -7,14 +7,13 @@ public:
         string word;
         int i=0;
         while(ss>>word){
-            //its empty or not
-            if(pattern.size()==i) return false;
+            if(pattern.size()==i){
+                return false;
+            }
             char c=pattern[i];
-            //character->word mapping's valid or not
             if(char_word.count(c) && char_word[c]!=word){
                 return false;
             }
-            //word->character mapping's valid or not
             if(word_char.count(word) && word_char[word]!=c){
                 return false;
             }
@@ -22,6 +21,6 @@ public:
             word_char[word]=c;
             i++;
         }
-        return i==pattern.size();
+        return pattern.size()==i;
     }
 };
