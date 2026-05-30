@@ -4,23 +4,21 @@ public:
         int start=0;
         int count=0;
         for (int i=0; i<s.length(); i++){
-            //odd length
             int l=i;
             int r=i;
-            while(l>=0 && r<s.length() && s[l]==s[r]){
-                count++;
-                l--;
-                r++;
-            }
-
-            //even length
+            count+=isPal(l, r, s);
             l=i;
             r=i+1;
-            while(l>=0 && r<s.length() && s[l]==s[r]){
-                count++;
-                l--;
-                r++;
-            }
+            count+=isPal(l, r, s);
+        }
+        return count;
+    }
+    int isPal(int l, int r, string s){
+        int count=0;
+        while(l>=0 && r<s.length() && s[l]==s[r]){
+            count++;
+            l--;
+            r++;
         }
         return count;
     }
