@@ -14,17 +14,10 @@ public:
     bool hasPathSum(TreeNode* root, int targetSum) {
         
         if(root==nullptr) return false;
-        int rem_sum=targetSum-root->val;
-        cout<<rem_sum<<"\n";
         if(root->left==nullptr && root->right==nullptr){
-            if(rem_sum==0){
-                return true;
-            }
-            else{
-                rem_sum+=root->val;
-            }
+            return targetSum==root->val;
         }
-        
+        int rem_sum=targetSum-root->val;
         return hasPathSum(root->left, rem_sum) || hasPathSum(root->right, rem_sum);
         
         return false;
