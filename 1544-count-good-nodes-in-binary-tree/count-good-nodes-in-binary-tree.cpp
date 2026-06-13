@@ -23,9 +23,7 @@ public:
         int count=0;
         if(root->val>=maxlen) count++;
         maxlen=max(maxlen, root->val);
-        count+=helper(root->left, maxlen);
-        count+=helper(root->right, maxlen);
         
-        return count;
+        return helper(root->left, maxlen)+helper(root->right, maxlen)+count;
     }
 };
