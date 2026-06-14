@@ -14,7 +14,7 @@ public:
     unordered_map<int, int> traversal;
     int pre=0;
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        if (preorder.empty() || inorder.empty()) return nullptr;
+        // if (preorder.empty() || inorder.empty()) return nullptr;
         int i=0;
         for(int n: inorder){
             traversal[n]=i;
