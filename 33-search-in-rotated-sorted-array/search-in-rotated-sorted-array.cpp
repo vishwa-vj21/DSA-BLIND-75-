@@ -4,11 +4,13 @@ public:
         int l=0;
         int r=nums.size()-1;
         while(l<=r){
-            // int mid=l+(r-l)/2;
-            int mid=(r+l)/2;
-            if(nums[mid]==target) return mid;
-            //l sorted
-            if(nums[l]<=nums[mid]){
+            int mid=l+(r-l)/2;
+            cout<<mid<<"\n";
+            if(nums[mid]==target){
+                return mid;
+            }
+            else if(nums[l]<=nums[mid]){
+                //left array is sorted
                 if(nums[l]<=target && target<nums[mid]){
                     r=mid-1;
                 }
@@ -16,8 +18,8 @@ public:
                     l=mid+1;
                 }
             }
-            //r sorted
             else{
+                //right array is sorted
                 if(nums[mid]<target && target<=nums[r]){
                     l=mid+1;
                 }
@@ -25,7 +27,6 @@ public:
                     r=mid-1;
                 }
             }
-
         }
         return -1;
     }
